@@ -17,7 +17,7 @@ public class SearchAgendamentoEntregaSpecification implements Specification<Agen
   private AgendamentoEntregaRequest request;
   private static final String UNIQUE_ID = "uniqueID";
   private static final String FUNCIONARIO = "funcionario";
-  private static final String ENTREGA = "entrega";
+  private static final String ENTREGA = "dataEntrega";
   private static final String DATA_ENTREGA = "dataEntrega";
 
   public SearchAgendamentoEntregaSpecification(AgendamentoEntregaRequest request){
