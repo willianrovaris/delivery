@@ -69,4 +69,8 @@ public class FuncionarioService {
     funcionarioRepository.deleteById(funcionarioId);
   }
 
+  public FuncionarioDto findDtoById(Long funcionarioId){
+    return funcionarioMapper.toDto(funcionarioRepository.findById(funcionarioId).orElse(null));
+  }
+
 }

@@ -1,6 +1,8 @@
 package com.fiserv.delivery.service;
 
 import com.fiserv.delivery.domain.dto.AgendamentoEntregaDto;
+import com.fiserv.delivery.domain.dto.EntregaDto;
+import com.fiserv.delivery.domain.dto.FuncionarioDto;
 import com.fiserv.delivery.domain.mapper.AgendamentoEntregaMapper;
 import com.fiserv.delivery.domain.request.AgendamentoEntregaRequest;
 import com.fiserv.delivery.domain.response.AgendamentoEntregaResponse;
@@ -26,8 +28,18 @@ public class AgendamentoEntregaService {
   @Autowired
   private AgendamentoEntregaMapper agendamentoEntregaMapper;
 
+  @Autowired
+  private FuncionarioService funcionarioService;
+
+  @Autowired
+  private EntregaService entregaService;
+
   public AgendamentoEntregaDto save(AgendamentoEntregaRequest request){
-    AgendamentoEntregaDto agendamentoEntregaDto = new AgendamentoEntregaDto();
+    FuncionarioDto funcionarioDto = funcionarioService.findDtoById(request.getFuncionarioUniqueId());
+    EntregaDto entregaDto = entregaService.findDtoById(request.getFuncionarioUniqueId());
+
+    AgendamentoEntregaDto agendamentoEntregaDto = new AgendamentoEntregaDto(entregaDto, funcionarioDto,
+        request.getEntrega());
 
     return agendamentoEntregaMapper.toDto(agendamentoEntregaRepository.save(agendamentoEntregaMapper.fromDto(agendamentoEntregaDto)));
   }

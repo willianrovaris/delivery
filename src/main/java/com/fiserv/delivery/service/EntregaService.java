@@ -1,5 +1,6 @@
 package com.fiserv.delivery.service;
 
+import com.fiserv.delivery.domain.dto.ClienteDto;
 import com.fiserv.delivery.domain.dto.EntregaDto;
 import com.fiserv.delivery.domain.mapper.EntregaMapper;
 import com.fiserv.delivery.domain.request.EntregaRequest;
@@ -26,8 +27,14 @@ public class EntregaService {
   @Autowired
   private EntregaMapper entregaMapper;
 
+  @Autowired
+  private ClienteService clienteService;
+
   public EntregaDto save(EntregaRequest request){
-    EntregaDto entregaDto = new EntregaDto();
+    ClienteDto clienteDto = clienteService.findDtoById(request.getClienteUniqueId());
+
+    EntregaDto entregaDto = new EntregaDto(clienteDto, request.getNumeroPedido(),
+        clienteService.formatClienteEndereco(clienteDto));
 
     return entregaMapper.toDto(entregaRepository.save(entregaMapper.fromDto(entregaDto)));
   }
@@ -57,5 +64,9 @@ public class EntregaService {
 
   public void deleteById(Long entregaId){
     entregaRepository.deleteById(entregaId);
+  }
+
+  public EntregaDto findDtoById(Long entregaId){
+    return entregaMapper.toDto(entregaRepository.findById(entregaId).orElse(null));
   }
 }

@@ -64,4 +64,12 @@ public class ClienteService {
     clienteRepository.deleteById(clienteId);
   }
 
+  public ClienteDto findDtoById(Long clienteId){
+    return clienteMapper.toDto(clienteRepository.findById(clienteId).orElse(null));
+  }
+
+  public String formatClienteEndereco(ClienteDto dto){
+    return dto.getEndereco() + ", " + dto.getBairro() + " - " +dto.getCidade() + "/" + dto.getEstado();
+  }
+
 }
