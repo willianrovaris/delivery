@@ -1,5 +1,7 @@
 package com.fiserv.delivery.service;
 
+import static java.util.Objects.nonNull;
+
 import com.fiserv.delivery.domain.dto.AgendamentoEntregaDto;
 import com.fiserv.delivery.domain.dto.EntregaDto;
 import com.fiserv.delivery.domain.dto.FuncionarioDto;
@@ -7,6 +9,8 @@ import com.fiserv.delivery.domain.mapper.AgendamentoEntregaMapper;
 import com.fiserv.delivery.domain.request.AgendamentoEntregaRequest;
 import com.fiserv.delivery.domain.response.AgendamentoEntregaResponse;
 import com.fiserv.delivery.entity.AgendamentoEntrega;
+import com.fiserv.delivery.entity.Entrega;
+import com.fiserv.delivery.entity.Funcionario;
 import com.fiserv.delivery.repository.AgendamentoEntregaRepository;
 import com.fiserv.delivery.specification.SearchAgendamentoEntregaSpecification;
 import java.util.List;
@@ -35,11 +39,21 @@ public class AgendamentoEntregaService {
   private EntregaService entregaService;
 
   public AgendamentoEntregaDto save(AgendamentoEntregaRequest request){
+
+    AgendamentoEntrega agendamentoEntrega = agendamentoEntregaRepository.findByEntregaUniqueId(request.getEntregaUniqueId());
+
+    if (nonNull(agendamentoEntrega)){
+      Entrega entrega = agendamentoEntrega.getEntrega();
+      Funcionario funcionario = agendamentoEntrega.getFuncionario();
+      throw new RuntimeException("Ja foi realizado o agendamento de entrega para o pedido de numero: "
+          +entrega.getNumeroPedido()+ " para o funcionario: " + funcionario.getMatricula() + " - " + funcionario.getNome());
+    }
+
     FuncionarioDto funcionarioDto = funcionarioService.findDtoById(request.getFuncionarioUniqueId());
-    EntregaDto entregaDto = entregaService.findDtoById(request.getFuncionarioUniqueId());
+    EntregaDto entregaDto = entregaService.findDtoById(request.getEntregaUniqueId());
 
     AgendamentoEntregaDto agendamentoEntregaDto = new AgendamentoEntregaDto(entregaDto, funcionarioDto,
-        request.getEntrega());
+        request.getDataEntrega());
 
     return agendamentoEntregaMapper.toDto(agendamentoEntregaRepository.save(agendamentoEntregaMapper.fromDto(agendamentoEntregaDto)));
   }

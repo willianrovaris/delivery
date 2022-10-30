@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 public class AgendamentoEntregaDto implements Serializable {
 
+  private Long uniqueId;
   private EntregaDto entrega;
   private FuncionarioDto funcionario;
   private LocalDate dataEntrega;
@@ -16,6 +17,14 @@ public class AgendamentoEntregaDto implements Serializable {
     this.entrega = entrega;
     this.funcionario = funcionario;
     this.dataEntrega = dataEntrega;
+  }
+
+  public Long getUniqueId() {
+    return uniqueId;
+  }
+
+  public void setUniqueId(Long uniqueId) {
+    this.uniqueId = uniqueId;
   }
 
   public EntregaDto getEntrega() {

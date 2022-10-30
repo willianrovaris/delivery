@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class ClienteDto implements Serializable {
 
+  private Long uniqueId;
   private String cpf;
   private String nome;
   private String endereco;
@@ -25,6 +26,8 @@ public class ClienteDto implements Serializable {
     this.estado = estado;
     this.pais = pais;
   }
+
+
 
   public String getCpf() {
     return cpf;

@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class EntregaDto implements Serializable {
 
+  private Long uniqueId;
   private ClienteDto cliente;
   private Long numeroPedido;
   private String endereco;
@@ -15,6 +16,14 @@ public class EntregaDto implements Serializable {
     this.cliente = cliente;
     this.numeroPedido = numeroPedido;
     this.endereco = endereco;
+  }
+
+  public Long getUniqueId() {
+    return uniqueId;
+  }
+
+  public void setUniqueId(Long uniqueId) {
+    this.uniqueId = uniqueId;
   }
 
   public ClienteDto getCliente() {

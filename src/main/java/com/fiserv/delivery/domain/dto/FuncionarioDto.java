@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 public class FuncionarioDto implements Serializable {
 
+  private Long uniqueId;
   private String cpf;
   private String nome;
   private Long matricula;
@@ -21,6 +22,14 @@ public class FuncionarioDto implements Serializable {
     this.matricula = matricula;
     this.admissaoDt = admissaoDt;
     this.periodoTrabalho = periodoTrabalho;
+  }
+
+  public Long getUniqueId() {
+    return uniqueId;
+  }
+
+  public void setUniqueId(Long uniqueId) {
+    this.uniqueId = uniqueId;
   }
 
   public String getCpf() {

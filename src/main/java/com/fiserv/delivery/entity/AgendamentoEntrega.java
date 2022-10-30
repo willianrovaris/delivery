@@ -1,6 +1,7 @@
 package com.fiserv.delivery.entity;
 
 import java.time.LocalDate;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -28,11 +29,11 @@ public class AgendamentoEntrega extends AuditableEntity{
   @Column(name = "AGENDAMENTO_ENTREGA_UID")
   private Long uniqueId;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY, cascade= CascadeType.MERGE)
   @JoinColumn(name = "ENTREGA_UID", updatable = false)
   private Entrega entrega;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY, cascade= CascadeType.MERGE)
   @JoinColumn(name = "FUNCIONARIO_UID", updatable = false)
   private Funcionario funcionario;
 

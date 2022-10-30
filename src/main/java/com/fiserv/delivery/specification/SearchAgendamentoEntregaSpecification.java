@@ -51,17 +51,17 @@ public class SearchAgendamentoEntregaSpecification implements Specification<Agen
           request.getEntregaUniqueId())));
     }
 
-    if (nonNull(request.getEntregaDe())){
+    if (nonNull(request.getDataEntregaDe())){
       predicates.add(criteriaBuilder.and(criteriaBuilder.greaterThanOrEqualTo(
           root.get(DATA_ENTREGA),
-          request.getEntregaDe()
+          request.getDataEntregaDe()
       )));
     }
 
-    if (nonNull(request.getEntregaAte())){
+    if (nonNull(request.getDataEntregaAte())){
       predicates.add(criteriaBuilder.and(criteriaBuilder.lessThanOrEqualTo(
           root.get(DATA_ENTREGA),
-          request.getEntregaAte()
+          request.getDataEntregaAte()
       )));
     }
 

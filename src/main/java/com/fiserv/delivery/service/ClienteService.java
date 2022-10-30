@@ -1,5 +1,7 @@
 package com.fiserv.delivery.service;
 
+import static java.util.Objects.nonNull;
+
 import com.fiserv.delivery.domain.dto.ClienteDto;
 import com.fiserv.delivery.domain.mapper.ClienteMapper;
 import com.fiserv.delivery.domain.request.ClienteRequest;
@@ -9,7 +11,6 @@ import com.fiserv.delivery.repository.ClienteRepository;
 import com.fiserv.delivery.specification.SearchClienteSpecification;
 import com.fiserv.delivery.util.ValidacaoCPF;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -28,7 +29,7 @@ public class ClienteService {
   private ClienteMapper clienteMapper;
 
   public ClienteDto save(ClienteRequest request){
-    if ((!ValidacaoCPF.isCPF(request.getCpf())) || (Objects.nonNull(clienteRepository.findByCpf(request.getCpf()))) ){
+    if ((!ValidacaoCPF.isCPF(request.getCpf())) || (nonNull(clienteRepository.findByCpf(request.getCpf()))) ){
       throw new RuntimeException("CPF Invalido ou ja cadastrado no sistema!");
     }
 
@@ -53,7 +54,7 @@ public class ClienteService {
     ClienteResponse response = new ClienteResponse();
     ClienteDto clienteDto = clienteMapper.toDto(clienteRepository.findById(clienteId).orElse(null));
 
-    if (Objects.nonNull(clienteDto)){
+    if (nonNull(clienteDto)){
       response.setCliente(clienteDto);
     }
 

@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 
 public class ValidacaoCPF {
 
-  /* Anotação - Willian Fernandes Rovaris - Clase genérica encontrada na web para validação de CPF */
+  /* Anotacao - Willian Fernandes Rovaris - Clase generica encontrada na web para validacao de CPF */
 
     public static boolean isCPF(String CPF) {
       if (CPF.equals("00000000000") ||

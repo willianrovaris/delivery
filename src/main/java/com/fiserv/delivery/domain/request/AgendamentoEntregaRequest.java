@@ -10,11 +10,11 @@ public class AgendamentoEntregaRequest implements Serializable {
   private Long entregaUniqueId;
   private Long funcionarioUniqueId;
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-  private LocalDate entrega;
+  private LocalDate dataEntrega;
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-  private LocalDate entregaDe;
+  private LocalDate dataEntregaDe;
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-  private LocalDate entregaAte;
+  private LocalDate dataEntregaAte;
 
   public Long getUniqueId() {
     return uniqueId;
@@ -40,27 +40,27 @@ public class AgendamentoEntregaRequest implements Serializable {
     this.funcionarioUniqueId = funcionarioUniqueId;
   }
 
-  public LocalDate getEntrega() {
-    return entrega;
+  public LocalDate getDataEntrega() {
+    return dataEntrega;
   }
 
-  public void setEntrega(LocalDate entrega) {
-    this.entrega = entrega;
+  public void setDataEntrega(LocalDate dataEntrega) {
+    this.dataEntrega = dataEntrega;
   }
 
-  public LocalDate getEntregaDe() {
-    return entregaDe;
+  public LocalDate getDataEntregaDe() {
+    return dataEntregaDe;
   }
 
-  public void setEntregaDe(LocalDate entregaDe) {
-    this.entregaDe = entregaDe;
+  public void setDataEntregaDe(LocalDate dataEntregaDe) {
+    this.dataEntregaDe = dataEntregaDe;
   }
 
-  public LocalDate getEntregaAte() {
-    return entregaAte;
+  public LocalDate getDataEntregaAte() {
+    return dataEntregaAte;
   }
 
-  public void setEntregaAte(LocalDate entregaAte) {
-    this.entregaAte = entregaAte;
+  public void setDataEntregaAte(LocalDate dataEntregaAte) {
+    this.dataEntregaAte = dataEntregaAte;
   }
 }

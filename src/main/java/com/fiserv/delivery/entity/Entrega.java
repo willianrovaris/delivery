@@ -1,5 +1,6 @@
 package com.fiserv.delivery.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,7 +28,7 @@ public class Entrega extends AuditableEntity{
   @Column(name = "ENTREGA_UID")
   private Long uniqueId;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY, cascade= CascadeType.ALL)
   @JoinColumn(name = "CLIENTE_UID", updatable = false)
   private Cliente cliente;
 

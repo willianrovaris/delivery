@@ -1,5 +1,7 @@
 package com.fiserv.delivery.service;
 
+import static java.util.Objects.nonNull;
+
 import com.fiserv.delivery.domain.dto.ClienteDto;
 import com.fiserv.delivery.domain.dto.EntregaDto;
 import com.fiserv.delivery.domain.mapper.EntregaMapper;
@@ -9,7 +11,6 @@ import com.fiserv.delivery.entity.Entrega;
 import com.fiserv.delivery.repository.EntregaRepository;
 import com.fiserv.delivery.specification.SearchEntregaSpecification;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,6 +32,10 @@ public class EntregaService {
   private ClienteService clienteService;
 
   public EntregaDto save(EntregaRequest request){
+    if (nonNull(entregaRepository.findByNumeroPedido(request.getNumeroPedido()))){
+      throw new RuntimeException("O pedido de numero "+request.getNumeroPedido()+ " ja existe no sistema!");
+    }
+
     ClienteDto clienteDto = clienteService.findDtoById(request.getClienteUniqueId());
 
     EntregaDto entregaDto = new EntregaDto(clienteDto, request.getNumeroPedido(),
@@ -55,7 +60,7 @@ public class EntregaService {
 
     EntregaDto entregaDto = entregaMapper.toDto(entregaRepository.findById(entregaId).orElse(null));
 
-    if (Objects.nonNull(entregaDto)){
+    if (nonNull(entregaDto)){
       response.setEntrega(entregaDto);
     }
 

@@ -1,5 +1,7 @@
 package com.fiserv.delivery.service;
 
+import static java.util.Objects.nonNull;
+
 import com.fiserv.delivery.domain.dto.FuncionarioDto;
 import com.fiserv.delivery.domain.mapper.FuncionarioMapper;
 import com.fiserv.delivery.domain.request.FuncionarioRequest;
@@ -9,7 +11,6 @@ import com.fiserv.delivery.repository.FuncionarioRepository;
 import com.fiserv.delivery.specification.SearchFuncionarioSpecification;
 import com.fiserv.delivery.util.ValidacaoCPF;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -28,11 +29,11 @@ public class FuncionarioService {
   private FuncionarioMapper funcionarioMapper;
 
   public FuncionarioDto save(FuncionarioRequest request){
-    if (Objects.nonNull(funcionarioRepository.findByMatricula(request.getMatricula()))){
+    if (nonNull(funcionarioRepository.findByMatricula(request.getMatricula()))){
       throw new RuntimeException("A Matricula "+request.getMatricula()+ " ja existe no sistema!");
     }
 
-    if ((!ValidacaoCPF.isCPF(request.getCpf())) || (Objects.nonNull(funcionarioRepository.findByCpf(request.getCpf()))) ){
+    if ((!ValidacaoCPF.isCPF(request.getCpf())) || (nonNull(funcionarioRepository.findByCpf(request.getCpf()))) ){
       throw new RuntimeException("CPF Invalido ou ja cadastrado no sistema!");
     }
 
@@ -58,7 +59,7 @@ public class FuncionarioService {
 
     FuncionarioDto funcionarioDto = funcionarioMapper.toDto(funcionarioRepository.findById(funcionarioId).orElse(null));
 
-    if (Objects.nonNull(funcionarioDto)){
+    if (nonNull(funcionarioDto)){
       response.setFuncionario(funcionarioDto);
     }
 
