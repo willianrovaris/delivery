@@ -1,0 +1,72 @@
+import java.nio.charset.StandardCharsets
+
+buildscript {
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:2.0.5.RELEASE"
+        classpath "org.hibernate:hibernate-gradle-plugin:5.0.7.Final"
+        classpath 'com.bmuschko:gradle-docker-plugin:4.0.0'
+    }
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'org.hibernate.orm'
+
+hibernate {
+    enhance {
+        enableLazyInitialization = true
+    }
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+version = '1.0-SNAPSHOT'
+compileJava.options.encoding = StandardCharsets.UTF_8
+compileTestJava.options.encoding = StandardCharsets.UTF_8
+
+springBoot {
+    buildInfo()
+}
+
+bootRun {
+    systemProperties 'LOG_FOLDER': "/delivery",
+            'spring.profiles.active': "dev"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot:2.0.6.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-autoconfigure:2.0.6.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter:2.0.6.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.0.6.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.0.6.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc:2.0.6.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-security:2.0.6.RELEASE'
+    implementation 'org.springframework.data:spring-data-jpa:2.0.10.RELEASE'
+    implementation 'org.springframework.data:spring-data-keyvalue:2.0.9.RELEASE'
+    implementation 'com.oracle.ojdbc:ojdbc8:19.3.0.0'
+    implementation 'javax.xml.bind:jaxb-api:2.4.0-b180830.0359'
+    implementation 'io.swagger:swagger-annotations:1.5.20'
+    implementation 'org.keycloak:keycloak-spring-boot-starter:15.0.2'
+    compile "com.zaxxer:HikariCP:3.1.0"
+    implementation "org.mapstruct:mapstruct:1.5.3.Final"
+    annotationProcessor "org.mapstruct:mapstruct-processor:1.5.3.Final"
+}
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs = [
+            '-Amapstruct.suppressGeneratorTimestamp=true'
+    ]
+}

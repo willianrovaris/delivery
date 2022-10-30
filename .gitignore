@@ -1,0 +1,20 @@
+# Gradle
+build
+.gradle
+.gradletasknamecache
+
+# Eclipse
+bin
+.classpath
+.project
+.settings
+.metadata
+.springBeans
+.launch
+
+# IDEA
+.idea
+*.ipr
+*.iws
+*.iml
+out
