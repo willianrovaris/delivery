@@ -60,4 +60,14 @@ public class EntregaController {
     entregaService.deleteById(entregaId);
   }
 
+  @ApiOperation(value = "Modify Entrega", nickname = "modify")
+  @RequestMapping(path = PATH + "/modify/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  public EntregaResponse modify(
+      @RequestBody EntregaRequest request,
+      @PathVariable(value = "id") Long entregaId){
+    EntregaResponse response = new EntregaResponse();
+    response.setEntrega(entregaService.modify(entregaId, request));
+    return response;
+  }
+
 }

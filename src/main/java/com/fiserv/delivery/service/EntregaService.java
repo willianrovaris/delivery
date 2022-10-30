@@ -32,14 +32,26 @@ public class EntregaService {
   private ClienteService clienteService;
 
   public EntregaDto save(EntregaRequest request){
-    if (nonNull(entregaRepository.findByNumeroPedido(request.getNumeroPedido()))){
-      throw new RuntimeException("O pedido de numero "+request.getNumeroPedido()+ " ja existe no sistema!");
-    }
+    entregaValidation(request);
 
     ClienteDto clienteDto = clienteService.findDtoById(request.getClienteUniqueId());
 
     EntregaDto entregaDto = new EntregaDto(clienteDto, request.getNumeroPedido(),
         clienteService.formatClienteEndereco(clienteDto));
+
+    return entregaMapper.toDto(entregaRepository.save(entregaMapper.fromDto(entregaDto)));
+  }
+
+  public EntregaDto modify(Long entregaId, EntregaRequest request){
+    entregaValidation(request);
+
+
+    EntregaDto entregaDto = entregaMapper.toDto(entregaRepository.findById(entregaId).orElseThrow(() -> new RuntimeException("Entrega nao existe!")));
+    ClienteDto clienteDto = clienteService.findDtoById(request.getClienteUniqueId());
+
+    entregaDto.setCliente(clienteDto);
+    entregaDto.setNumeroPedido(request.getNumeroPedido());
+    entregaDto.setEndereco(clienteService.formatClienteEndereco(clienteDto));
 
     return entregaMapper.toDto(entregaRepository.save(entregaMapper.fromDto(entregaDto)));
   }
@@ -73,5 +85,11 @@ public class EntregaService {
 
   public EntregaDto findDtoById(Long entregaId){
     return entregaMapper.toDto(entregaRepository.findById(entregaId).orElse(null));
+  }
+
+  public void entregaValidation(EntregaRequest request){
+    if (nonNull(entregaRepository.findByNumeroPedido(request.getNumeroPedido()))){
+      throw new RuntimeException("O pedido de numero "+request.getNumeroPedido()+ " ja existe no sistema!");
+    }
   }
 }

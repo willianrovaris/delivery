@@ -29,12 +29,26 @@ public class ClienteService {
   private ClienteMapper clienteMapper;
 
   public ClienteDto save(ClienteRequest request){
-    if ((!ValidacaoCPF.isCPF(request.getCpf())) || (nonNull(clienteRepository.findByCpf(request.getCpf()))) ){
-      throw new RuntimeException("CPF Invalido ou ja cadastrado no sistema!");
-    }
+    clienteValidation(request);
 
     ClienteDto clienteDto = new ClienteDto(request.getCpf(), request.getNome(), request.getEndereco(),
         request.getBairro(), request.getCidade(), request.getEstado(), request.getPais());
+
+    return clienteMapper.toDto(clienteRepository.save(clienteMapper.fromDto(clienteDto)));
+  }
+
+  public ClienteDto modify(Long clienteId, ClienteRequest request){
+    clienteValidation(request);
+
+    ClienteDto clienteDto = clienteMapper.toDto(clienteRepository.findById(clienteId).orElseThrow(() -> new RuntimeException("Cliente nao existe!")));
+
+    clienteDto.setCpf(request.getCpf());
+    clienteDto.setNome(request.getNome());
+    clienteDto.setEndereco(request.getEndereco());
+    clienteDto.setBairro(request.getBairro());
+    clienteDto.setCidade(request.getCidade());
+    clienteDto.setEstado(request.getEstado());
+    clienteDto.setPais(request.getPais());
 
     return clienteMapper.toDto(clienteRepository.save(clienteMapper.fromDto(clienteDto)));
   }
@@ -71,6 +85,12 @@ public class ClienteService {
 
   public String formatClienteEndereco(ClienteDto dto){
     return dto.getEndereco() + ", " + dto.getBairro() + " - " +dto.getCidade() + "/" + dto.getEstado();
+  }
+
+  public void clienteValidation(ClienteRequest request){
+    if ((!ValidacaoCPF.isCPF(request.getCpf())) || (nonNull(clienteRepository.findByCpf(request.getCpf()))) ){
+      throw new RuntimeException("CPF Invalido ou ja cadastrado no sistema!");
+    }
   }
 
 }

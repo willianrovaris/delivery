@@ -60,4 +60,14 @@ public class AgendamentoEntregaController {
     agendamentoEntregaService.deleteById(agendamentoEntregaId);
   }
 
+  @ApiOperation(value = "Modify Agendamento Entrega", nickname = "modify")
+  @RequestMapping(path = PATH + "/modify/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  public AgendamentoEntregaResponse modify(
+      @RequestBody AgendamentoEntregaRequest request,
+      @PathVariable(value = "id") Long agendamentoEntregaId){
+    AgendamentoEntregaResponse response = new AgendamentoEntregaResponse();
+    response.setAgendamentoEntrega(agendamentoEntregaService.modify(agendamentoEntregaId, request));
+    return response;
+  }
+
 }

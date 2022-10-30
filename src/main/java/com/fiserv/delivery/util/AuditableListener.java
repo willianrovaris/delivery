@@ -2,13 +2,16 @@ package com.fiserv.delivery.util;
 
 import com.fiserv.delivery.entity.AuditableEntity;
 import java.security.Principal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import org.keycloak.KeycloakPrincipal;
 import org.keycloak.KeycloakSecurityContext;
 import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.data.domain.Auditable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
@@ -24,7 +27,7 @@ public class AuditableListener implements ApplicationContextAware {
 
   @PrePersist
   public void setCriacao(AuditableEntity auditable) {
-    auditable.setDtCriacao(LocalDateTime.now());
+    auditable.setDtCriacao(LocalDate.now());
     auditable.setUsuarioCriacao(getUsuarioCriacao(auditable));
   }
 

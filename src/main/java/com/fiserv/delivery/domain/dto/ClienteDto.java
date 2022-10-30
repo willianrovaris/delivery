@@ -1,6 +1,7 @@
 package com.fiserv.delivery.domain.dto;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 public class ClienteDto implements Serializable {
 
@@ -12,6 +13,8 @@ public class ClienteDto implements Serializable {
   private String cidade;
   private String estado;
   private String pais;
+  private LocalDate dtCriacao;
+  private String usuarioCriacao;
 
   public ClienteDto(){
   }
@@ -27,7 +30,13 @@ public class ClienteDto implements Serializable {
     this.pais = pais;
   }
 
+  public Long getUniqueId() {
+    return uniqueId;
+  }
 
+  public void setUniqueId(Long uniqueId) {
+    this.uniqueId = uniqueId;
+  }
 
   public String getCpf() {
     return cpf;
@@ -83,5 +92,21 @@ public class ClienteDto implements Serializable {
 
   public void setPais(String pais) {
     this.pais = pais;
+  }
+
+  public LocalDate getDtCriacao() {
+    return dtCriacao;
+  }
+
+  public void setDtCriacao(LocalDate dtCriacao) {
+    this.dtCriacao = dtCriacao;
+  }
+
+  public String getUsuarioCriacao() {
+    return usuarioCriacao;
+  }
+
+  public void setUsuarioCriacao(String usuarioCriacao) {
+    this.usuarioCriacao = usuarioCriacao;
   }
 }

@@ -42,18 +42,29 @@ public class AgendamentoEntregaService {
 
     AgendamentoEntrega agendamentoEntrega = agendamentoEntregaRepository.findByEntregaUniqueId(request.getEntregaUniqueId());
 
-    if (nonNull(agendamentoEntrega)){
-      Entrega entrega = agendamentoEntrega.getEntrega();
-      Funcionario funcionario = agendamentoEntrega.getFuncionario();
-      throw new RuntimeException("Ja foi realizado o agendamento de entrega para o pedido de numero: "
-          +entrega.getNumeroPedido()+ " para o funcionario: " + funcionario.getMatricula() + " - " + funcionario.getNome());
-    }
+    agendamentoEntregaValidations(agendamentoEntrega);
 
     FuncionarioDto funcionarioDto = funcionarioService.findDtoById(request.getFuncionarioUniqueId());
     EntregaDto entregaDto = entregaService.findDtoById(request.getEntregaUniqueId());
 
     AgendamentoEntregaDto agendamentoEntregaDto = new AgendamentoEntregaDto(entregaDto, funcionarioDto,
         request.getDataEntrega());
+
+    return agendamentoEntregaMapper.toDto(agendamentoEntregaRepository.save(agendamentoEntregaMapper.fromDto(agendamentoEntregaDto)));
+  }
+
+  public AgendamentoEntregaDto modify(Long agendamentoEntregaId, AgendamentoEntregaRequest request){
+    AgendamentoEntrega agendamentoEntrega = agendamentoEntregaRepository.findByEntregaUniqueId(request.getEntregaUniqueId());
+
+    agendamentoEntregaValidations(agendamentoEntrega);
+
+    AgendamentoEntregaDto agendamentoEntregaDto = agendamentoEntregaMapper.toDto(agendamentoEntregaRepository.findById(agendamentoEntregaId).orElseThrow(() -> new RuntimeException("Entrega nao existe!")));
+    FuncionarioDto funcionarioDto = funcionarioService.findDtoById(request.getFuncionarioUniqueId());
+    EntregaDto entregaDto = entregaService.findDtoById(request.getEntregaUniqueId());
+
+    agendamentoEntregaDto.setEntrega(entregaDto);
+    agendamentoEntregaDto.setFuncionario(funcionarioDto);
+    agendamentoEntregaDto.setDataEntrega(request.getDataEntrega());
 
     return agendamentoEntregaMapper.toDto(agendamentoEntregaRepository.save(agendamentoEntregaMapper.fromDto(agendamentoEntregaDto)));
   }
@@ -84,5 +95,14 @@ public class AgendamentoEntregaService {
 
   public void deleteById(Long agendamentoEntregaId){
     agendamentoEntregaRepository.deleteById(agendamentoEntregaId);
+  }
+
+  public void agendamentoEntregaValidations(AgendamentoEntrega entity){
+    if (nonNull(entity)){
+      Entrega entrega = entity.getEntrega();
+      Funcionario funcionario = entity.getFuncionario();
+      throw new RuntimeException("Ja foi realizado o agendamento de entrega para o pedido de numero: "
+          +entrega.getNumeroPedido()+ " para o funcionario: " + funcionario.getMatricula() + " - " + funcionario.getNome());
+    }
   }
 }

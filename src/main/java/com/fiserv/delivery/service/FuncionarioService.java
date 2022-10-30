@@ -29,16 +29,24 @@ public class FuncionarioService {
   private FuncionarioMapper funcionarioMapper;
 
   public FuncionarioDto save(FuncionarioRequest request){
-    if (nonNull(funcionarioRepository.findByMatricula(request.getMatricula()))){
-      throw new RuntimeException("A Matricula "+request.getMatricula()+ " ja existe no sistema!");
-    }
-
-    if ((!ValidacaoCPF.isCPF(request.getCpf())) || (nonNull(funcionarioRepository.findByCpf(request.getCpf()))) ){
-      throw new RuntimeException("CPF Invalido ou ja cadastrado no sistema!");
-    }
+    funcionarioValidations(request);
 
     FuncionarioDto funcionarioDto = new FuncionarioDto(request.getCpf(), request.getNome(),
         request.getMatricula(), request.getDataAdmissao(), request.getPeriodoTrabalho());
+
+    return funcionarioMapper.toDto(funcionarioRepository.save(funcionarioMapper.fromDto(funcionarioDto)));
+  }
+
+  public FuncionarioDto modify(Long funcionarioId, FuncionarioRequest request){
+    funcionarioValidations(request);
+
+    FuncionarioDto funcionarioDto = funcionarioMapper.toDto(funcionarioRepository.findById(funcionarioId).orElseThrow(() -> new RuntimeException("Funcionario nao existe!")));
+
+    funcionarioDto.setCpf(request.getCpf());
+    funcionarioDto.setNome(request.getNome());
+    funcionarioDto.setMatricula(request.getMatricula());
+    funcionarioDto.setAdmissaoDt(request.getDataAdmissao());
+    funcionarioDto.setPeriodoTrabalho(request.getPeriodoTrabalho());
 
     return funcionarioMapper.toDto(funcionarioRepository.save(funcionarioMapper.fromDto(funcionarioDto)));
   }
@@ -72,6 +80,16 @@ public class FuncionarioService {
 
   public FuncionarioDto findDtoById(Long funcionarioId){
     return funcionarioMapper.toDto(funcionarioRepository.findById(funcionarioId).orElse(null));
+  }
+
+  public void funcionarioValidations(FuncionarioRequest request){
+    if (nonNull(funcionarioRepository.findByMatricula(request.getMatricula()))){
+      throw new RuntimeException("A Matricula "+request.getMatricula()+ " ja existe no sistema!");
+    }
+
+    if ((!ValidacaoCPF.isCPF(request.getCpf())) || (nonNull(funcionarioRepository.findByCpf(request.getCpf()))) ){
+      throw new RuntimeException("CPF Invalido ou ja cadastrado no sistema!");
+    }
   }
 
 }

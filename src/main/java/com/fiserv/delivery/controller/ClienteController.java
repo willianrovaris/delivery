@@ -60,4 +60,14 @@ public class ClienteController {
     clienteService.deleteById(clienteId);
   }
 
+  @ApiOperation(value = "Modify Cliente", nickname = "modify")
+  @RequestMapping(path = PATH + "/modify/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  public ClienteResponse modify(
+      @RequestBody ClienteRequest request,
+      @PathVariable(value = "id") Long clienteId){
+    ClienteResponse response = new ClienteResponse();
+    response.setCliente(clienteService.modify(clienteId, request));
+    return response;
+  }
+
 }

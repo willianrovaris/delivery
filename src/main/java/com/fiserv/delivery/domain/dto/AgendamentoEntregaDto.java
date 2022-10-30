@@ -9,6 +9,8 @@ public class AgendamentoEntregaDto implements Serializable {
   private EntregaDto entrega;
   private FuncionarioDto funcionario;
   private LocalDate dataEntrega;
+  private LocalDate dtCriacao;
+  private String usuarioCriacao;
 
   public AgendamentoEntregaDto(){
   }
@@ -49,5 +51,21 @@ public class AgendamentoEntregaDto implements Serializable {
 
   public void setDataEntrega(LocalDate dataEntrega) {
     this.dataEntrega = dataEntrega;
+  }
+
+  public LocalDate getDtCriacao() {
+    return dtCriacao;
+  }
+
+  public void setDtCriacao(LocalDate dtCriacao) {
+    this.dtCriacao = dtCriacao;
+  }
+
+  public String getUsuarioCriacao() {
+    return usuarioCriacao;
+  }
+
+  public void setUsuarioCriacao(String usuarioCriacao) {
+    this.usuarioCriacao = usuarioCriacao;
   }
 }

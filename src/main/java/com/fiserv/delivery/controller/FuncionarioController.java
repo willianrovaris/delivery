@@ -60,4 +60,14 @@ public class FuncionarioController {
     funcionarioService.deleteById(funcionarioId);
   }
 
+  @ApiOperation(value = "Modify Funcionario", nickname = "modify")
+  @RequestMapping(path = PATH + "/modify/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  public FuncionarioResponse modify(
+      @RequestBody FuncionarioRequest request,
+      @PathVariable(value = "id") Long funcionarioId){
+    FuncionarioResponse response = new FuncionarioResponse();
+    response.setFuncionario(funcionarioService.modify(funcionarioId, request));
+    return response;
+  }
+
 }

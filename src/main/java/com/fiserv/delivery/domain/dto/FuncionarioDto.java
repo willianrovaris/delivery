@@ -11,6 +11,8 @@ public class FuncionarioDto implements Serializable {
   private Long matricula;
   private LocalDate admissaoDt;
   private char periodoTrabalho;
+  private LocalDate dtCriacao;
+  private String usuarioCriacao;
 
   public FuncionarioDto(){
   }
@@ -70,5 +72,21 @@ public class FuncionarioDto implements Serializable {
 
   public void setPeriodoTrabalho(char periodoTrabalho) {
     this.periodoTrabalho = periodoTrabalho;
+  }
+
+  public LocalDate getDtCriacao() {
+    return dtCriacao;
+  }
+
+  public void setDtCriacao(LocalDate dtCriacao) {
+    this.dtCriacao = dtCriacao;
+  }
+
+  public String getUsuarioCriacao() {
+    return usuarioCriacao;
+  }
+
+  public void setUsuarioCriacao(String usuarioCriacao) {
+    this.usuarioCriacao = usuarioCriacao;
   }
 }

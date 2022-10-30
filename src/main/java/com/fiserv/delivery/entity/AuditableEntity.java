@@ -2,7 +2,7 @@ package com.fiserv.delivery.entity;
 
 import com.fiserv.delivery.util.AuditableListener;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
@@ -16,18 +16,18 @@ public class AuditableEntity implements Serializable {
   @NotNull
   @Column(name="DT_CRIACAO", nullable = false)
   @CreatedDate
-  private LocalDateTime dtCriacao;
+  private LocalDate dtCriacao;
 
   @NotNull
   @Column(name="USUARIO_CRIACAO", nullable = false, length = 100)
   @CreatedDate
   private String usuarioCriacao;
 
-  public LocalDateTime getDtCriacao() {
+  public LocalDate getDtCriacao() {
     return dtCriacao;
   }
 
-  public void setDtCriacao(LocalDateTime dtCriacao) {
+  public void setDtCriacao(LocalDate dtCriacao) {
     this.dtCriacao = dtCriacao;
   }
 

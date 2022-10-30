@@ -1,6 +1,7 @@
 package com.fiserv.delivery.domain.dto;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 public class EntregaDto implements Serializable {
 
@@ -8,6 +9,8 @@ public class EntregaDto implements Serializable {
   private ClienteDto cliente;
   private Long numeroPedido;
   private String endereco;
+  private LocalDate dtCriacao;
+  private String usuarioCriacao;
 
   public EntregaDto(){
   }
@@ -48,5 +51,21 @@ public class EntregaDto implements Serializable {
 
   public void setEndereco(String endereco) {
     this.endereco = endereco;
+  }
+
+  public LocalDate getDtCriacao() {
+    return dtCriacao;
+  }
+
+  public void setDtCriacao(LocalDate dtCriacao) {
+    this.dtCriacao = dtCriacao;
+  }
+
+  public String getUsuarioCriacao() {
+    return usuarioCriacao;
+  }
+
+  public void setUsuarioCriacao(String usuarioCriacao) {
+    this.usuarioCriacao = usuarioCriacao;
   }
 }
