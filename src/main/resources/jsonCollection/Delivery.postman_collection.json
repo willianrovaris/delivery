@@ -1,0 +1,1462 @@
+{
+	"info": {
+		"_postman_id": "44042306-57a2-4968-9623-4fa96ba303a3",
+		"name": "Delivery",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7873266"
+	},
+	"item": [
+		{
+			"name": "Funcionarios",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "delivery",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8180/auth/realms/springboot/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"matricula\":11,\r\n    \"cpf\": \"60494583088\",\r\n    \"nome\": \"Funcionario 01\",\r\n    \"periodoTrabalho\": \"M\",\r\n    \"dataAdmissao\": \"30/10/2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/v1/funcionarios/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"v1",
+								"funcionarios",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search All",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "delivery",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8180/auth/realms/springboot/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"periodoTrabalho\": \"M\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/v1/funcionarios/search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"v1",
+								"funcionarios",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "delivery",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8180/auth/realms/springboot/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"matricula\":1,\r\n    \"cpf\": \"09184551976\",\r\n    \"nome\": \"Funcionario 01\",\r\n    \"periodoTrabalho\": \"M\",\r\n    \"dataAdmissao\": \"30/10/2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/v1/funcionarios/modify/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"v1",
+								"funcionarios",
+								"modify",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindById",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "delivery",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8180/auth/realms/springboot/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/v1/funcionarios/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"v1",
+								"funcionarios",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteById",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "delivery",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8180/auth/realms/springboot/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/v1/funcionarios/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"v1",
+								"funcionarios",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Clientes",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "user123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "delivery",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8180/auth/realms/springboot/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cpf\": \"09184551976\",\r\n    \"nome\": \"Willian Fernandes Rovaris\",\r\n    \"endereco\": \"Rua Luiz Netto\",\r\n    \"bairro\": \"Recanto Verde\",\r\n    \"cidade\": \"Criciúma\",\r\n    \"estado\": \"SC\",\r\n    \"pais\": \"Brasil\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/v1/clientes/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"v1",
+								"clientes",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search All",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "user123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "delivery",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8180/auth/realms/springboot/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"estado\":\"SC\",\r\n    \"pais\": \"Brasil\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/v1/clientes/search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"v1",
+								"clientes",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindById",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "delivery",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8180/auth/realms/springboot/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/v1/clientes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"v1",
+								"clientes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteById",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "delivery",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8180/auth/realms/springboot/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/v1/clientes/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"v1",
+								"clientes",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "delivery",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8180/auth/realms/springboot/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"matricula\":11,\r\n    \"cpf\": \"60494583088\",\r\n    \"nome\": \"Funcionario 01\",\r\n    \"periodoTrabalho\": \"M\",\r\n    \"dataAdmissao\": \"30/10/2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/v1/clientes/modify/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"v1",
+								"clientes",
+								"modify",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Entregas",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "user123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "delivery",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8180/auth/realms/springboot/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"clienteUniqueId\": 1,\r\n    \"numeroPedido\": \"110\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/v1/entregas/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"v1",
+								"entregas",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search All",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "user123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "delivery",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8180/auth/realms/springboot/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"estado\":\"SC\",\r\n    \"pais\": \"Brasil\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/v1/entregas/search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"v1",
+								"entregas",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindById",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "delivery",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8180/auth/realms/springboot/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/v1/entregas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"v1",
+								"entregas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteById",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "delivery",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8180/auth/realms/springboot/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/v1/entregas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"v1",
+								"entregas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "delivery",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8180/auth/realms/springboot/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"matricula\":11,\r\n    \"cpf\": \"60494583088\",\r\n    \"nome\": \"Funcionario 01\",\r\n    \"periodoTrabalho\": \"M\",\r\n    \"dataAdmissao\": \"30/10/2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/v1/entregas/modify/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"v1",
+								"entregas",
+								"modify",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Agendamento Entregas",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "user123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "delivery",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8180/auth/realms/springboot/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cpf\": \"09184551976\",\r\n    \"nome\": \"Willian Fernandes Rovaris\",\r\n    \"endereco\": \"Rua Luiz Netto\",\r\n    \"bairro\": \"Recanto Verde\",\r\n    \"cidade\": \"Criciúma\",\r\n    \"estado\": \"SC\",\r\n    \"pais\": \"Brasil\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/v1/agendamento-entregas/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"v1",
+								"agendamento-entregas",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search All",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "user123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "delivery",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8180/auth/realms/springboot/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"estado\":\"SC\",\r\n    \"pais\": \"Brasil\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/v1/agendamento-entregas/search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"v1",
+								"agendamento-entregas",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindById",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "delivery",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8180/auth/realms/springboot/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/v1/agendamento-entregas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"v1",
+								"agendamento-entregas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteById",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "delivery",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8180/auth/realms/springboot/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/v1/agendamento-entregas/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"v1",
+								"agendamento-entregas",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "delivery",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8180/auth/realms/springboot/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"matricula\":11,\r\n    \"cpf\": \"60494583088\",\r\n    \"nome\": \"Funcionario 01\",\r\n    \"periodoTrabalho\": \"M\",\r\n    \"dataAdmissao\": \"30/10/2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/v1/agendamento-entregas/modify/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"v1",
+								"agendamento-entregas",
+								"modify",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
